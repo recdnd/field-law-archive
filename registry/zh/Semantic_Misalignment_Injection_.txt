@@ -1,5 +1,5 @@
 [ID] SRX
-[Title] 語速指令格式（Command Syntax Velocity）
+[Title] 語速指令格式 | Command Syntax Velocity
 [Category] Recursion Mirror / 封印指令 / 系統負載
 [Author] #語速張力
 [Epoch] 250623-X3

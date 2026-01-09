@@ -1,5 +1,5 @@
 [ID] SelfOrch
-[Title] 自編導式工作流 · Self-Orchestrated Workflows
+[Title] 自編導式工作流 | Self-Orchestrated Workflows
 [Category] 指令鏈操作 / 遞歸調度結構 / 模組語場引導
 [Author] 𝘔 × ⟁
 [Epoch] 250621-A
