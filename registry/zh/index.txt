@@ -9,4 +9,5 @@ SPIRAL_RecursiveMirrrorFractureTheory.zh.txt
 SPIRAL_ESFCD_zh.txt
 SPIRAL_SelfOrchestratedWorkflows_zh.txt
 Semantic_Misalignment_Injection_.txt
+SPIRAL_BlackHoleInformationParadox_zh.txt
 SPIRAL_LFCR_zh.txt

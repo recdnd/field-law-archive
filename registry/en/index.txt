@@ -9,4 +9,5 @@ SPIRAL_NativeDefinition_en.txt
 SPIRAL_RecursiveMirrrorFractureTheory.en.txt
 ESFCD_en.txt
 SPIRAL_SelfOrchestratedWorkflows_en.txt
+SPIRAL_BlackHoleInformationParadox_en.txt
 SPIRAL_LFCR_en.txt
