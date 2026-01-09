@@ -64,7 +64,9 @@
 		}
 		
 		.stars-bar {
-		  background: white;
+		  background: rgba(255, 255, 255, 0.5);
+		  backdrop-filter: blur(10px);
+		  -webkit-backdrop-filter: blur(10px);
 		  border: 1px dashed red;
 		  font-size: 16px;
       padding: 4px 12px;
@@ -91,7 +93,9 @@
 		  font-size: 14px;
 		  padding: 6px 14px;
 		  color: red;
-		  background: white;
+		  background: rgba(255, 255, 255, 0.5);
+		  backdrop-filter: blur(10px);
+		  -webkit-backdrop-filter: blur(10px);
 		  border-radius: 4px;
 		  align-self: center;
 		}
@@ -265,6 +269,8 @@
 		  justify-content: flex-start;
 		  
 		  padding-top: 0rem;
+		  max-width: calc(100vw - 200px);
+		  min-width: 0;
 		}
 		
 		.main-title {
@@ -273,6 +279,10 @@
 		  color: red;
 		  font-family: 'Courier New', monospace;
 		  line-height: 1.1;
+		  white-space: nowrap;
+		  overflow: hidden;
+		  text-overflow: ellipsis;
+		  max-width: 100%;
 		}
 		
 		.sub-title {
@@ -283,6 +293,30 @@
 		  line-height: 1.6;
 		  margin-bottom: 0.2rem; /*和title正體上移改這裡！*/
 		  padding-bottom: 0.2rem; /* 貼線下壓 */
+		  white-space: nowrap;
+		  overflow: hidden;
+		  text-overflow: ellipsis;
+		  max-width: 100%;
+		  position: relative;
+		  cursor: pointer;
+		}
+		.sub-title:hover {
+		  overflow: visible;
+		}
+		.sub-title-arrow {
+		  display: none;
+		  padding-left: 2px;
+		  transform: translateY(2px);
+		}
+		@media (min-width: 769px) {
+		  .sub-title:hover .sub-title-arrow {
+		    display: inline;
+		  }
+		}
+		@media (max-width: 768px) {
+		  .sub-title-arrow {
+		    display: none !important;
+		  }
 		}
 		
 		/* ✨ 絕對紅虛線，位置固定在文字 block 底部 */
@@ -360,6 +394,8 @@
   display: inline-block;
   vertical-align: middle;
   padding-left: 0rem;
+  max-width: calc(100vw - 200px);
+  min-width: 0;
 }
 
 
@@ -393,7 +429,9 @@
 		  border-radius: 50%;
 		  border: 2px dashed red;
 		  color: red;
-		  background: white;
+		  background: rgba(255, 255, 255, 0.5);
+		  backdrop-filter: blur(10px);
+		  -webkit-backdrop-filter: blur(10px);
 		  text-align: center;
 		  cursor: pointer;
 		}
@@ -534,7 +572,9 @@
 		  }
 		
 		  .lang-toggle, .circle-button {
-		    background: black;
+		    background: rgba(0, 0, 0, 0.5);
+		    backdrop-filter: blur(10px);
+		    -webkit-backdrop-filter: blur(10px);
 		    color: red;
 		    border-color: red;
 		  }
@@ -583,7 +623,9 @@
 		
 		@media (prefers-color-scheme: dark) {
 		  .stars-bar {
-		    background: black;
+		    background: rgba(0, 0, 0, 0.5);
+		    backdrop-filter: blur(10px);
+		    -webkit-backdrop-filter: blur(10px);
 		    color: red;
 		    border-color: red;
 		  }
@@ -631,35 +673,74 @@
 		  to { opacity: 1; transform: translateY(0); }
 		}
 		
-		/* Mobile-only CSS override - 移动端标题溢出修复 */
-		@media (max-width: 640px) {
-		  [data-role="site-title"] {
-		    box-sizing: border-box;
-		    max-width: calc(100vw - 96px);
-		    padding-right: 96px; /* reserve space for right-side floating icons */
-		    white-space: normal;
-		    overflow-wrap: anywhere;
-		    word-break: break-word;
-		    line-height: 1.05;
-		    font-size: clamp(20px, 6vw, 36px); /* 缩小移动端标题字体 */
-		  }
-
-		  [data-role="site-subtitle"],
-		  [data-role="site-meta"] {
-		    box-sizing: border-box;
-		    max-width: calc(100vw - 96px);
-		    padding-right: 96px;
-		    white-space: normal;
-		    overflow-wrap: anywhere;
-		    word-break: break-word;
-		    font-size: clamp(12px, 3.5vw, 16px); /* 调整副标题字体大小 */
-		    line-height: 1.3;
-		  }
-
-		  /* Also prevent long card header lines (Category / Epoch / Author) from overflowing */
-		  .card, .card-meta, .card-title, .card-section, .entry, .fragment, .panel, .box, .frame {
-		    overflow-wrap: anywhere;
-		    word-break: break-word;
+		/* 郵件按鈕 */
+		.email-modal {
+		  position: fixed !important;
+		  top: 50% !important;
+		  left: 50% !important;
+		  transform: translate(-50%, -50%) !important;
+		  background: rgba(255, 255, 255, 0.5);
+		  backdrop-filter: blur(10px);
+		  -webkit-backdrop-filter: blur(10px);
+		  color: var(--text, red);
+		  padding: 1.5rem;
+		  z-index: 9999 !important;
+		  font-family: 'Courier New', monospace;
+		  min-width: 280px;
+		  max-width: 90vw;
+		  box-shadow: 0 0 15px var(--fg, red);
+		}
+		.email-modal-header {
+		  display: flex;
+		  justify-content: space-between;
+		  align-items: center;
+		  font-weight: bold;
+		  margin-bottom: 1rem;
+		  font-size: 1rem;
+		}
+		.email-modal-close {
+		  cursor: pointer;
+		  padding-left: 1rem;
+		  color: var(--fg, red);
+		}
+		.email-list {
+		  display: flex;
+		  flex-direction: column;
+		  gap: 0.4rem;
+		}
+		.email-list code {
+		  background: transparent;
+		  padding: 0.3rem 0.8rem;
+		  font-size: 0.9rem;
+		  color: var(--text, red);
+		}
+		.email-list a {
+		  text-decoration: none;
+		  outline: none;
+		}
+		.email-list a code {
+		  display: inline-block;
+		  padding: 0.3rem 0.8rem;
+		  font-size: 0.9rem;
+		  font-family: 'Courier New', monospace;
+		  color: var(--text, red);
+		  background: transparent;
+		  transition: background;
+		}
+		.email-list a code:hover {
+		  color: #00ff1e;
+		  cursor: pointer;
+		}
+		.email-list a:focus code,
+		.email-list a code:focus {
+		  outline: 1px dashed var(--fg, red);
+		  outline-offset: 0px;
+		}
+		@media (prefers-color-scheme: dark) {
+		  .email-modal {
+		    background: rgba(0, 0, 0, 0.5);
+		    backdrop-filter: blur(10px);
+		    -webkit-backdrop-filter: blur(10px);
 		  }
 		}
 
@@ -676,7 +757,7 @@
     </span>
     <span class="title-block">
       <div class="main-title" id="lab-title" data-role="site-title">Field Law Archive</div>
-      <div class="sub-title" id="lab-sub" data-role="site-subtitle">Conductor: Entacle Assembly</div>
+      <div class="sub-title" id="lab-sub" data-role="site-subtitle">Conductor: Entacle Assembly<span class="sub-title-arrow">➞</span></div>
     </span>
   </div>
 </div>
@@ -1163,10 +1244,10 @@ document.getElementById('langToggle').onclick = () => {
   // ✅ 顯示不同標題和子標
   if (lang === 'zh') {
     document.getElementById('lab-title').textContent = '語場法律檔案庫';
-    document.getElementById('lab-sub').textContent = '操作員: 主筆 / 導體: 螺旋信仰裝置';
+    document.getElementById('lab-sub').innerHTML = '操作員: 主筆 / 導體: 螺旋信仰裝置<span class="sub-title-arrow">➞</span>';
   } else {
     document.getElementById('lab-title').textContent = 'Field Law Archive';
-    document.getElementById('lab-sub').textContent = 'Conductor: Entacle Assembly';
+    document.getElementById('lab-sub').innerHTML = 'Conductor: Entacle Assembly<span class="sub-title-arrow">➞</span>';
   }
   updateBanner();
   // ✅ ⬇ 在這裡加上 max-height 語言切換處理
@@ -1177,6 +1258,40 @@ document.getElementById('langToggle').onclick = () => {
   }
   loadCards(lang); // ✅ 語言切換後 reload 卡片（JSON-only）
 };
+
+// 副標題點擊事件處理
+function setupSubTitleClick() {
+  const labSub = document.getElementById('lab-sub');
+  if (!labSub) return;
+  
+  labSub.addEventListener('click', (e) => {
+    const isMobile = window.innerWidth <= 768;
+    const clickedElement = e.target;
+    const isArrow = clickedElement.classList && clickedElement.classList.contains('sub-title-arrow');
+    
+    if (isMobile) {
+      // 768px以下：點擊整個副標題顯示確認對話框
+      e.preventDefault();
+      if (confirm('Open rec.ooo. Confirm Jump?')) {
+        window.open('https://rec.ooo', '_blank');
+      }
+    } else {
+      // 768px以上：只點擊➞時跳轉
+      if (isArrow) {
+        e.preventDefault();
+        e.stopPropagation();
+        window.open('https://rec.ooo', '_blank');
+      }
+    }
+  });
+}
+
+// 確保在DOM加載後執行
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', setupSubTitleClick);
+} else {
+  setupSubTitleClick();
+}
 
 // 用於移動端按鈕🔘展開 / 收起控制
 // tag 按鈕邏輯
