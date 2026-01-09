@@ -1,0 +1,16 @@
+{
+  "total_cards": 26,
+  "invalid_cards": 0,
+  "invalid_details": [],
+  "warnings": {
+    "ESFCD-zh": [
+      "Empty fragments"
+    ],
+    "SRX-zh": [
+      "Empty fragments"
+    ],
+    "CIT-en": [
+      "Empty fragments"
+    ]
+  }
+}
